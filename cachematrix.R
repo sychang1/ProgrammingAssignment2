@@ -1,4 +1,4 @@
-## My solution to the assignment #2.
+## My solution to the assignment 2.
 
 ## Creates a matrix object (list) with access functions.
 
