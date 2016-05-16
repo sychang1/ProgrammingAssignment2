@@ -1,15 +1,36 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Solution to the assignment #2.
 
-## Write a short comment describing this function
+## Creates a matrix object (list) with access functions.
 
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(mx=matrix())
+{
+    minv <- NULL
+    set <- function(my){
+        mx <<- my
+        minv <<- NULL
+    }
+    
+    get <- function() mx
+    setSolve <- function(minv_new) minv <<- minv_new
+    getSolve <- function() minv
+    
+    list(set = set, get = get, setSolve = setSolve, getSolve = getSolve)
+    
 }
 
 
-## Write a short comment describing this function
+## Returns a matrix that is inverse of mx.
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function(mx,...)
+{
+    minv <- mx$getSolve()
+
+    if (!is.null(minv))
+    {
+        message("getting cached matrix inverse.")
+        return(minv)
+    }
+    minv <- solve(mx$get(),...)
+    mx$setSolve(minv)    
+    minv    
 }
